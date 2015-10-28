@@ -96,6 +96,9 @@ bool khOnReceive(TcpClient& client, char *buf, int size)
    Serial.print("answer ..");
    Serial.print(size);
    Serial.println(" bytes");
+
+   Serial.print(buf);
+
    client.close();
 }
 
@@ -148,6 +151,16 @@ void clockRefresh()
 	tft.print(Counter1[1]);
 
 	InfoRefresh(false);
+
+	Serial.print("Connected to: ");
+	Serial.print(WifiStation.getSSID());
+	Serial.print(" Channel: ");
+	Serial.print(WifiStation.getChannel());
+	Serial.print(" Strength: ");
+	Serial.print(WifiStation.getRssi());
+	Serial.println(" dBm");
+
+
 #ifdef TIME_COUNTER
 		Serial.print("Timer instr time: ");
 	    Serial.println((system_get_time()-t)/1000);
@@ -217,10 +230,14 @@ void connectOk()
 	Serial.print("My IP: ");
 	Serial.println(WifiStation.getIP().toString().c_str());
 
-	procTimer.initializeMs(60*1000, sendData).start(true);   // every 60 sec
-	sendData();
-
+	procTimer.initializeMs(20*1000, sendData).start(true);   // every 20 sec
 	clockTimer.initializeMs(1000, clockRefresh).start(true); // every 1 sec
+
+
+	procTimer.restart();
+	clockTimer.restart();
+
+	sendData();
 
 }
 
@@ -250,7 +267,9 @@ void init()
 
 	WifiStation.waitConnection(connectOk, 20, connectFail);
 
+
 }
+
 
 
 

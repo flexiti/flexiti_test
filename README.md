@@ -4,9 +4,10 @@ TCP transmision error -8
 
 If you receive the first error, the error remains!!!!! until we make reset
 
+
 Httcp client stops working, while tcp client seems to be resistant to this error
 
-The physical display is not needed for the test, only SPI transfers
+The physical display is not needed for the test
 
 In my tests error occurs between 15-60 minutes and already then stays until reset
 
