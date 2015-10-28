@@ -37,7 +37,7 @@
 
 
 
-#define LOOPS 6
+#define LOOPS 8
 // loops 3  in my hardware takes 241 ms
 // loops 5  in my hardware takes 397 ms
 // loops 10 in my hardware takes 785 ms
@@ -48,11 +48,11 @@
 // Timer interrupt should not exceed 500 ms
 
 
-//#define TIME_COUNTER  // for execution time measure
+#define TIME_COUNTER  // for execution time measure
 
 #ifndef WIFI_SSID
 	#define WIFI_SSID "xxx" 					// Put you SSID and Password here
-	#define WIFI_PWD "xxx"
+	#define WIFI_PWD "xxxx"
 #endif
 
 
